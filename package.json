@@ -1,0 +1,29 @@
+{
+  "name": "simple-websocket",
+  "version": "1.0.0",
+  "description": "simple websocket",
+  "main": "backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "init": "npm i",
+    "start": "node backend.js",
+    "kick-start": "npm i && node backend.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asimeet/simple-websocket.git"
+  },
+  "keywords": [
+    "node.js",
+    "websocket"
+  ],
+  "author": "Asimeet Padhee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asimeet/simple-websocket/issues"
+  },
+  "homepage": "https://github.com/asimeet/simple-websocket#readme",
+  "dependencies": {
+    "websocket": "^1.0.34"
+  }
+}

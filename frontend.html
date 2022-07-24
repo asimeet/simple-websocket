@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>The Chatbot Playground</title>
+</head>
+
+<body style="margin-left: 150px; margin-top: 50px;">
+    I am the <b>Chat Bot!!</b> Please wirte your query below:
+
+    <ul id="chat-list"> </ul>
+
+    <input id="new-chat-msg" onkeydown="send(event)" />
+
+</body>
+<script>
+
+    const ws = new WebSocket('ws://localhost:9898/');
+    const chatList = document.getElementById('chat-list');
+
+    const addToChat = (message, caller = 'client') => {
+        const newListItem = document.createElement('li');
+        newListItem.style = `color: ${caller == 'client' ? 'blue' : 'green'}; margin-bottom: 20px;`
+        newListItem.innerHTML = message;
+        chatList.appendChild(newListItem);
+    }
+
+
+    send = (e) => {
+        if (e.key === 'Enter') {
+            const inputMsg = e.currentTarget.value;
+            addToChat(inputMsg)
+            ws.send(inputMsg)
+        }
+    }
+
+    ws.onopen = function () {
+        console.log('WebSocket Client Connected');
+    };
+
+    ws.onmessage = function (e) {
+        console.log("Received: '" + e.data + "'");
+        addToChat(e.data, 'server')
+    };
+
+</script>
+
+</html>
